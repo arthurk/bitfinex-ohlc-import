@@ -1,0 +1,46 @@
+➤ http "https://api.bitfinex.com/v2/candles/trade:1m:tBTCUSD/hist" > candles.json
+
+2018-02-10T14:14:00Z
+...
+2018-02-10T12:16:00Z
+2018-02-10T12:15:00Z
+
+#!!! symbol must be uppercase
+
+➤ http "https://api.bitfinex.com/v2/candles/trade:1m:tBTCUSD/hist?end=1391213400000&limit=3"
+just setting &end works, start doesnt have to be present, it will return minute values ending
+at END.
+In above case 3 values before END
+
+Maximum Limit of values in api response
+=======================================
+
+1000 values
+
+Above that it returns:
+
+	HTTP/1.1 500 Internal Server Error
+	[
+		"error",
+		10020,
+		"limit: invalid"
+	]
+
+Rate Limit
+==========
+If an IP address exceeds 90 requests per minute to the REST APIs, the requesting
+IP address will be blocked for 10-60 seconds and the JSON response {"error": "ERR_RATE_LIMIT"}
+will be returned.
+
+Our rate limit policy can vary in a range of 10 to 90 requests per minute
+depending on some factors (e.g. servers load, endpoint, etc.).
+
+worst case: 6 req/min (1 req every 10sec)
+best case: 1,5 req/sec --> to be on safe side we make 1 req/sec
+
+Maintenance
+===========
+When in maintenance few API endpoints (eg. books, ...) will return a maintenance error to prevent you to use potentially inconsistent data.
+["error", 20060, "maintenance"]
+
+
