@@ -1,5 +1,4 @@
-bitfinex-ohlc-import
-====================
+## bitfinex-ohlc-import
 
 A script that imports all historical OHLC data from the Bitfinex API and stores it in a local database.
 
@@ -11,13 +10,11 @@ API rate limits are respected and will not be exceeded. The script will re-try f
 
 Experimental support for the Websocket API is also available. It currently subscribes to all trading updates (buy/sell) but does not store that data.
 
-Installation
-============
+## Installation
 
 The script can be run in a virtualenv (via pipenv) or by using the Docker. For local development the virtualenv is recommended. For production deployments the Docker image is recommended.
 
-virtualenv (pipenv)
--------------------
+### virtualenv (pipenv)
 
 You need the `sqlite3` library installed on your system. On macOS you can use homebrew: `brew install sqlite3`.
 
@@ -27,8 +24,7 @@ To install the development environment, clone the repo and run:
 
 The `--dev` flag will install development tools such as `py.test`.
 
-Docker
-------
+### Docker
 
 You can build the Docker image with:
 
@@ -36,8 +32,7 @@ You can build the Docker image with:
 
 The Docker image will not install development tools such as `py.test`.
 
-Usage
-=====
+## Usage
 
 You can run the script with the following command:
 
@@ -64,8 +59,7 @@ The data is saved in a file called `bitfinex.sqlite3` in the same directory as t
 
     $ pipenv run python bitfinex/main.py /path/to/my/db.sqlite3
 
-Database schema
-===============
+## Database schema
 
 The data is stored in a Sqlite3 database and has a `"candles"` table with the following structure:
 
@@ -85,8 +79,7 @@ Example output:
     btcusd|1366366920000|123.2|122.7|123.2|122.7|82.9
     btcusd|1366366800000|123.7|123.7|123.7|123.7|1.1
 
-Export to CSV
--------------
+## Export to CSV
 
 The data can easily be exported to CSV:
 
@@ -99,8 +92,7 @@ The data can easily be exported to CSV:
 
 The data will be in a file called `data.csv`.
 
-Testing
-=======
+## Testing
 
 You need to have development dependencies installed (`pipenv install --dev`). 
 
