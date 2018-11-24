@@ -49,4 +49,4 @@ class SqliteDatabase:
         if result is None:
             return
         else:
-            return pendulum.from_timestamp(int(result)/1000)
+            return pendulum.from_timestamp(float(result)/1000)
