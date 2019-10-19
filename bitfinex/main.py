@@ -69,7 +69,7 @@ def main(db_path, debug):
 
     db = SqliteDatabase(path=db_path)
     end_date = pendulum.now()
-    step = pendulum.Interval(minutes=1000)
+    step = pendulum.Duration(minutes=1000)
 
     symbols = get_symbols()
     logging.info(f'Found {len(symbols)} symbols')
